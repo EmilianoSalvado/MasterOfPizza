@@ -3,13 +3,19 @@ using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Order : MonoBehaviour
+public class OrderedPizza
 {
-    Dictionary<Ingredients, bool> _requestedIngredients = new Dictionary<Ingredients, bool>();
+    List<Ingredients> _requestedIngredients = new List<Ingredients>();
     int regularMin = 6, extraMin = 10;
 
-    public Dictionary<Ingredients, bool> GetOrder()
+    public List<Ingredients> GetOrder()
     { return _requestedIngredients; }
+
+    public OrderedPizza(params Ingredients[] values)
+    {
+        foreach (var item in values)
+            _requestedIngredients.Add(item);
+    }
 
     public OrderResult CheckOrder(Pizza pizza)
     {
@@ -20,7 +26,7 @@ public class Order : MonoBehaviour
 
         foreach (var ing in pizza.Ingredients.Keys)
         {
-            if (_requestedIngredients.ContainsKey(ing))
+            if (_requestedIngredients.Contains(ing))
             {
                 correct++;
             }
