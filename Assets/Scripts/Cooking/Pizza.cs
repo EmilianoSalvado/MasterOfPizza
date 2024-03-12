@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +7,11 @@ public class Pizza : MonoBehaviour
     public Dictionary<Ingredients, int> Ingredients { get { return _ingredients; } }
     PizzaState _state;
     public PizzaState State { get { return _state; } }
+
+    private void Start()
+    {
+        _state = PizzaState.Raw;
+    }
 
     public void AddIngredient(Ingredients ingredient)
     {
