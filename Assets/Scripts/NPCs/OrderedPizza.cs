@@ -11,9 +11,9 @@ public class OrderedPizza
     public List<Ingredients> GetOrder()
     { return _requestedIngredients; }
 
-    public OrderedPizza(params Ingredients[] values)
+    public OrderedPizza(params Ingredients[] ingredients)
     {
-        foreach (var item in values)
+        foreach (var item in ingredients)
             _requestedIngredients.Add(item);
     }
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Oven : MonoBehaviour
 {
-    [SerializeField] float cookedTime, overcookedTime, burntTime;
+    [SerializeField] float _cookedTime, _overcookedTime, _burntTime;
     Pizza _pizza;
 
     public void PizzaIn(Pizza pizza)
@@ -23,9 +23,9 @@ public class Oven : MonoBehaviour
 
     IEnumerator CookPizza()
     {
-        var ct = new WaitForSeconds(cookedTime);
-        var oct = new WaitForSeconds(overcookedTime);
-        var bt = new WaitForSeconds(burntTime);
+        var ct = new WaitForSeconds(_cookedTime);
+        var oct = new WaitForSeconds(_overcookedTime);
+        var bt = new WaitForSeconds(_burntTime);
 
         yield return ct;
         _pizza.ChangeState(PizzaState.Cooked);
