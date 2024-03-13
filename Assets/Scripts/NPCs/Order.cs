@@ -7,6 +7,7 @@ public class Order : MonoBehaviour
 {
     [SerializeField][Range(1,4)] int _numberOfPizzas;
     [SerializeField] OrderedPizza[] _pizzas;
+    public OrderedPizza[] Pizzas {  get { return _pizzas; } }
 
     public void Randomize()
     {

@@ -6,6 +6,7 @@ using UnityEngine;
 public class OrderedPizza
 {
     List<Ingredients> _requestedIngredients = new List<Ingredients>();
+    public List<Ingredients> RequestedIngredients { get { return _requestedIngredients; } }
     int regularMin = 6, extraMin = 10;
 
     public List<Ingredients> GetOrder()
