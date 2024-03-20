@@ -25,7 +25,7 @@ public class OrderedPizza
 
         int correct = 0;
 
-        foreach (var ing in pizza.Ingredients.Keys)
+        foreach (var ing in pizza.IngredientsOf.Keys)
         {
             if (_requestedIngredients.Contains(ing))
             {
@@ -34,14 +34,14 @@ public class OrderedPizza
 
             if (correct < _requestedIngredients.Count)
                 return OrderResult.Failed;
-            if (pizza.Ingredients.All((x) => x.Value < regularMin))
+            if (pizza.IngredientsOf.All((x) => x.Value < regularMin))
                 return OrderResult.Poor;
         }
 
         if (pizza.State == PizzaState.Overcooked)
             return OrderResult.Succesful;
 
-        if (pizza.Ingredients.Any((x) => x.Value >= extraMin))
+        if (pizza.IngredientsOf.Any((x) => x.Value >= extraMin))
             return OrderResult.Great;
 
         return OrderResult.Succesful;

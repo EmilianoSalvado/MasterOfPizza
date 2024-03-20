@@ -2,15 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Oven : MonoBehaviour
+public class Oven : Interactable
 {
     [SerializeField] float _cookedTime, _overcookedTime, _burntTime;
     Pizza _pizza;
 
+    public override bool Interact()
+    {
+        if (_pizza != null && Player.instance.PizzaInHand == null)
+        { Player.instance.Grab(PizzaOut()); return true; }
+        else if (_pizza != null)
+        { return false; }
+
+        _pizza = Player.instance.PizzaInHand;
+        Player.instance.Clear();
+        StartCoroutine(CookPizza());
+        return true;
+    }
+
     public void PizzaIn(Pizza pizza)
     {
-        if (_pizza != null) return;
-        _pizza = pizza;
         StartCoroutine(CookPizza());
     }
 
