@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pizza : MonoBehaviour
+public class Pizza : Interactable
 {
     Dictionary<Ingredients, int> _ingredients = new Dictionary<Ingredients, int>();
     public Dictionary<Ingredients, int> IngredientsOf { get { return _ingredients; } }
@@ -23,10 +23,20 @@ public class Pizza : MonoBehaviour
             return;
         }
         _ingredients.Add(ingredient, 1);
+
+        SpritesManager.instance.Show(transform, ingredient);
     }
 
     public void ChangeState(PizzaState newState)
     {
         _state = newState;
+    }
+
+    public override bool Interact()
+    {
+        if (Player.instance.IngredientInHand == Ingredients.None || Player.instance.IngredientInHand == Ingredients.Dough)
+            return false;
+        AddIngredient(Player.instance.IngredientInHand);
+        return true;
     }
 }

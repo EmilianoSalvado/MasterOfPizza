@@ -15,6 +15,7 @@ public class Oven : Interactable
         { return false; }
 
         _pizza = Player.instance.PizzaInHand;
+        _pizza.transform.position = transform.position;
         Player.instance.Clear();
         StartCoroutine(CookPizza());
         return true;

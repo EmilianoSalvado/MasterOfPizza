@@ -10,7 +10,7 @@ public class Table : Interactable
     Pizza _pizza;
     public override bool Interact()
     {
-        if (Player.instance.IngredientInHand != Ingredients.Dough) return false;
+        if (Player.instance.IngredientInHand != Ingredients.Dough && _pizza == null) return false;
 
         if (_pizza == null)
         {
